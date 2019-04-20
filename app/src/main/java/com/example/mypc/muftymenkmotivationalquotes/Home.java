@@ -65,7 +65,7 @@ public class Home extends AppCompatActivity {
         mquote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this, AllQuotes.class));
+                startActivity(new Intent(Home.this, Quotes.class));
             }
         });
 
