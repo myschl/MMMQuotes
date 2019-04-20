@@ -8,9 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
+
+    private Button mquote, mfavorite;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,5 +58,22 @@ public class Home extends AppCompatActivity {
                 }
 
         );
+
+        mquote = findViewById(R.id.iquotes);
+        mfavorite = findViewById(R.id.ifavorites);
+
+        mquote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, AllQuotes.class));
+            }
+        });
+
+        mfavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, Favorites.class));
+            }
+        });
     }
 }

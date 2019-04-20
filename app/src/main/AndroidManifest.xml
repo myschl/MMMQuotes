@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home">
+        <activity android:name=".Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,10 @@
         <activity android:name=".Quotes" />
         <activity android:name=".Favorites" />
         <activity android:name=".Setting" />
-        <activity android:name=".About"></activity>
+        <activity android:name=".About" />
+        <activity android:name=".Terms_and_conditions" />
+        <activity android:name=".About_Mufty_Menk" />
+        <activity android:name=".Home"></activity>
     </application>
 
 </manifest>
