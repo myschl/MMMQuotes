@@ -2,10 +2,17 @@ package com.example.mypc.muftymenkmotivationalquotes;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class Favorites extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private FavoriteAdapter favoriteAdapter;
+    private ArrayList<FavoriteModel> favorite = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +33,21 @@ public class Favorites extends AppCompatActivity {
                 }
 
         );
+
+        for (int i=0; i<10; i++){
+            favorite.add(new FavoriteModel("Message #"+i+1, "fgkghruitgfdhgghrieuwthirggreug"));
+        }
+
+        Recyclerview();
+    }
+
+    private void Recyclerview() {
+        recyclerView = (RecyclerView)findViewById(R.id.irecyclerview);
+        //recyclerView.setHasFixedSize(true);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        favoriteAdapter=new FavoriteAdapter(Favorites.this, favorite);
+        recyclerView.setAdapter(favoriteAdapter);
     }
 }

@@ -11,4 +11,10 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/irecyclerview"/>
+
+
 </LinearLayout>

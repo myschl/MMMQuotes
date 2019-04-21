@@ -22,6 +22,7 @@ public class Quotes extends AppCompatActivity {
     private ViewPager mpager;
     private PagerAdapter adapter;
     private List<PagerModel> pagerModels;
+    public List<PagerModel> favorite;
     private String body;
 
     @Override
@@ -45,12 +46,10 @@ public class Quotes extends AppCompatActivity {
 
         );
 
-        mbody = mpager.findViewById(R.id.ibody);
+        //mbody = mpager.findViewById(R.id.ibody);
 
-
-
+        initializations();
         pager();
-
 
 
     }
@@ -67,7 +66,6 @@ public class Quotes extends AppCompatActivity {
         mpager.setAdapter(adapter);
         //mpager.setPadding(130,0,0,130);
 
-        initializations();
 
     }
 
@@ -83,25 +81,33 @@ public class Quotes extends AppCompatActivity {
         mshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String body = mbody.getText().toString();
-                String body = "My Quotes goes here";
+                //getting the text from the pageView
+                PagerModel text = pagerModels.get(mpager.getCurrentItem());
+
+                String body = text.getTitle();
                 String shareBody = body;
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share the Quote Via"));
+                startActivity(Intent.createChooser(sharingIntent, "Share Quote Via"));
             }
         });
 
         mfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Quotes.this, "favorite", Toast.LENGTH_SHORT).show();
+                //getting the text from the pageView
+                PagerModel text = pagerModels.get(mpager.getCurrentItem());
+                String title = text.getTitle();
+                String body = text.getBody();
+                favorite = new ArrayList<>();
+                favorite.add(new PagerModel(title, body));
+                Toast.makeText(Quotes.this, title, Toast.LENGTH_SHORT).show();
             }
         });
 
-        mprevious.setOnClickListener(new View.OnClickListener() {
+        /*mprevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Quotes.this, "previous", Toast.LENGTH_SHORT).show();
@@ -113,6 +119,16 @@ public class Quotes extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(Quotes.this, "next", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
+    }
+
+    public void Previous(View view) {
+        int position = mpager.getCurrentItem();
+        mpager.setCurrentItem(position - 1);
+    }
+
+    public void Next(View view) {
+        int position = mpager.getCurrentItem();
+        mpager.setCurrentItem(position + 1);
     }
 }
