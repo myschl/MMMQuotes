@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PagerAdapter extends android.support.v4.view.PagerAdapter {
@@ -17,6 +18,9 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
     public PagerAdapter(List<PagerModel> pagerModels, Context context) {
         this.pagerModels = pagerModels;
         this.context = context;
+    }
+
+    public PagerAdapter(ArrayList<FavoriteModel> favorite, FavoritesOnly context) {
     }
 
     @Override

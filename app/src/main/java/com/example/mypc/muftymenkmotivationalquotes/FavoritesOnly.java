@@ -5,10 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.DynamicLayout;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,22 +13,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Quotes extends AppCompatActivity {
-    private ImageButton mprevious, mnext, mshare, mfavorite;
+public class FavoritesOnly extends AppCompatActivity {
+    private ImageButton mprevious, mnext, mshare, mlis;
     private TextView mbody;
     private ViewPager mpager;
-    private PagerAdapter adapter;
-    private List<PagerModel> pagerModels;
+    private FavoritepagerAdapter adapter;
+    private List<FavoriteModel> pagerModels;
     public List<PagerModel> favorite;
     private String body;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quotes);
+        setContentView(R.layout.activity_favorites_only);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Quotes");
+        toolbar.setTitle("Favorite Quotes");
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
@@ -58,10 +55,10 @@ public class Quotes extends AppCompatActivity {
     private void pager() {
         pagerModels = new ArrayList<>();
         for (int i=0; i<10; i++){
-            pagerModels.add(new PagerModel("Message #" + i+2, "the object being returned by instantiateItem() method is also used later on, as the second parameter in the isViewFromObject method, in that way this method checks whether a particular object belongs to a given position, which is made simple."));
+            pagerModels.add(new FavoriteModel("Message #" + i+1, "the object being returned by instantiateItem() method is also used later on, as the second parameter in the isViewFromObject method, in that way this method checks whether a particular object belongs to a given position, which is made simple."));
         }
 
-        adapter = new PagerAdapter(pagerModels, this);
+        adapter = new FavoritepagerAdapter(FavoriteList.favorite, this);
         mpager = findViewById(R.id.ipager);
         mpager.setAdapter(adapter);
         //mpager.setPadding(130,0,0,130);
@@ -75,14 +72,14 @@ public class Quotes extends AppCompatActivity {
         mprevious = findViewById(R.id.iprevious);
         mnext = findViewById(R.id.inext);
         mshare = findViewById(R.id.ishare);
-        mfavorite = findViewById(R.id.ifavorites);
+        mlis = findViewById(R.id.ilis);
 
 
         mshare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getting the text from the pageView
-                PagerModel text = pagerModels.get(mpager.getCurrentItem());
+                FavoriteModel text = pagerModels.get(mpager.getCurrentItem());
 
                 String body = text.getTitle();
                 String shareBody = body;
@@ -94,17 +91,19 @@ public class Quotes extends AppCompatActivity {
             }
         });
 
-        mfavorite.setOnClickListener(new View.OnClickListener() {
+        mlis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //getting the text from the pageView
-                PagerModel text = pagerModels.get(mpager.getCurrentItem());
+                /*PagerModel text = pagerModels.get(mpager.getCurrentItem());
                 String title = text.getTitle();
                 String body = text.getBody();
-                /*favorite = new ArrayList<>();
-                favorite.add(new PagerModel(title, body));*/
+                *//*favorite = new ArrayList<>();
+                favorite.add(new PagerModel(title, body));*//*
                 FavoriteList.favorite.add(new FavoriteModel(title, body));
-                Toast.makeText(Quotes.this, title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(FavoritesOnly.this, title, Toast.LENGTH_SHORT).show();*/
+                startActivity(new Intent(FavoritesOnly.this, AllQuotes.class));
+                finish();
             }
         });
 

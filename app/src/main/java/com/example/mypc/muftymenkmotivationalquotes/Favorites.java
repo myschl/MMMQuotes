@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Favorites extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FavoriteAdapter favoriteAdapter;
-    private ArrayList<FavoriteModel> favorite = new ArrayList<>();
+    public static ArrayList<FavoriteModel> favorite = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,11 @@ public class Favorites extends AppCompatActivity {
 
         );
 
-        for (int i=0; i<10; i++){
-            favorite.add(new FavoriteModel("Message #"+i+1, "fgkghruitgfdhgghrieuwthirggreug"));
-        }
+        //FavoriteList favoriteList = new FavoriteList();
 
+        for (int i=0; i<10; i++){
+            FavoriteList.favorite.add(new FavoriteModel("Message #"+i+1, "fgkghruitgfdhggkfnfjffjfhrjkfhrjfheihy4uuiofffjnuikopjcvkdfmikgdmdjgwlregkjbrkjghbrmffmbrjfmfjkgnjrjkrfmrknbhgbglkhjkkhjjkigsejkhlfjkgjkhrieuwthirggreug"));
+        }
         Recyclerview();
     }
 
@@ -47,7 +48,7 @@ public class Favorites extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        favoriteAdapter=new FavoriteAdapter(Favorites.this, favorite);
+        favoriteAdapter=new FavoriteAdapter(Favorites.this, FavoriteList.favorite);
         recyclerView.setAdapter(favoriteAdapter);
     }
 }

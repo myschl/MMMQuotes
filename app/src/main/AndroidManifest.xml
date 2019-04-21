@@ -23,7 +23,8 @@
         <activity android:name=".About" />
         <activity android:name=".Terms_and_conditions" />
         <activity android:name=".About_Mufty_Menk" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".FavoritesOnly"></activity>
     </application>
 
 </manifest>
